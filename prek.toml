@@ -1,0 +1,75 @@
+# Configuration file for `prek`, a git hook framework written in Rust.
+# See https://prek.j178.dev for more information.
+#:schema https://www.schemastore.org/prek.json
+
+default_install_hook_types = [
+  "pre-commit",
+  "commit-msg",
+  "pre-push",
+]
+default_stages = ["pre-commit"]
+
+[[repos]]
+repo = "https://github.com/compilerla/conventional-pre-commit"
+rev = "v4.4.0"
+hooks = [
+  {
+    id = "conventional-pre-commit",
+    stages = ["commit-msg"],
+    args = ["feat", "fix", "build", "ci", "chore", "docs", "drop", "edit",
+     "perf", "polish", "root", "refactor", "revert", "style", "temp", "tests"]
+  }
+]
+
+[[repos]]
+repo = "builtin"
+hooks = [
+  { id = "check-executables-have-shebangs" },
+  { id = "check-json" },
+  { id = "check-merge-conflict" },
+  { id = "check-symlinks" },
+  { id = "check-toml" },
+  { id = "check-yaml", args = ["--allow-multiple-documents"] },
+  { id = "detect-private-key" },
+  { id = "end-of-file-fixer" },
+  { id = "fix-byte-order-marker" },
+  { id = "mixed-line-ending" },
+  { id = "trailing-whitespace" },
+]
+
+[[repos]]
+repo = "meta"
+hooks = [{ id = "check-useless-excludes" }]
+
+[[repos]]
+repo = "https://github.com/astral-sh/ruff-pre-commit"
+rev = "v0.16.2"
+hooks = [{ id = "ruff-check" }, { id = "ruff-format" }]
+
+[[repos]]
+repo = "https://github.com/codespell-project/codespell"
+rev = "v2.4.3"
+hooks = [{ id = "codespell" }]
+
+[[repos]]
+repo = "https://github.com/JoC0de/pre-commit-prettier"
+rev = "v3.9.6"
+hooks = [{ id = "prettier", types_or = ["css", "javascript", "json", "scss", "ts", "yaml"] }]
+
+[[repos]]
+repo = "https://github.com/rvben/rumdl-pre-commit"
+rev = "v0.2.53"
+hooks = [{ id = "rumdl" }, { id = "rumdl-fmt" }]
+
+[[repos]]
+repo = "https://github.com/zizmorcore/zizmor-pre-commit"
+rev = "v1.29.0"
+hooks = [{ id = "zizmor" }]
+
+[[repos]]
+repo = "https://github.com/djlint/djLint"
+rev = "v1.44.2"
+hooks = [
+  { id = "djlint-reformat", types = ["html"], files = "templates/" },
+  { id = "djlint", types = ["html"], files = "templates/" }
+]
