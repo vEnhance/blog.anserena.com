@@ -1,0 +1,6 @@
+{# Expects `post`: the page whose date and taxonomies to render. #}
+<p class="post-meta">
+    <time datetime="{{ post.date }}">{{ post.date | date(format="%B %-d, %Y") }}</time>
+    {% if post.draft %}<span class="post-draft">Draft</span>{% endif %}
+    {% include "partials/post-terms.html" %}
+</p>

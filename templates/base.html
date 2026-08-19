@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            {% block title %}
+                {{ config.title }}
+            {% endblock title %}
+        </title>
+        <meta name="author" content="{{ config.author }}">
+        <meta name="description" content="{{ config.description }}">
+        <meta name="keywords" content="{{ config.extra.keywords }}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap"
+              rel="stylesheet">
+        <link rel="stylesheet"
+              href="{{ get_url(path='style.css', cachebust=true) }}">
+        <link rel="alternate"
+              type="application/rss+xml"
+              title="{{ config.title }} — Blog"
+              href="{{ get_url(path='rss.xml') }}">
+        <link rel="alternate"
+              type="application/atom+xml"
+              title="{{ config.title }} — Blog"
+              href="{{ get_url(path='atom.xml') }}">
+        {% block head %}
+        {% endblock head %}
+    </head>
+    <body>
+        <div class="site-header">
+            <header class="container">
+                <h1 class="site-title">
+                    <a href="{{ get_url(path='/', trailing_slash=true) }}">{{ config.title }}</a>
+                </h1>
+                {% include "partials/nav.html" %}
+            </header>
+        </div>
+        <main class="container">
+            {% block content %}
+            {% endblock content %}
+        </main>
+    </body>
+</html>

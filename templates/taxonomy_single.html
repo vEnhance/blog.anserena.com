@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}
+    {{ term.name }} | {{ config.title }}
+{% endblock title %}
+{% block head %}
+    {% include "partials/katex.html" %}
+{% endblock head %}
+{% block content %}
+    <h1 class="page-heading">{{ term.name }}</h1>
+    {% if paginator is defined %}
+        {% set posts = paginator.pages %}
+    {% else %}
+        {% set posts = term.pages %}
+    {% endif %}
+    {% include "partials/post-list.html" %}
+    {% if paginator is defined %}
+        {% include "partials/pagination.html" %}
+    {% endif %}
+    <p class="post-browse">
+        <a href="{{ get_url(path=taxonomy.name, trailing_slash=true) }}">All {{ taxonomy.name }}</a>
+    </p>
+{% endblock content %}

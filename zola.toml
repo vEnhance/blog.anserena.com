@@ -1,0 +1,33 @@
+# The URL the site will be built for
+base_url = "https://blog.anserena.com"
+
+title = "Serena An"
+description = "Serena An's blog"
+author = "Serena An"
+
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = true
+
+# Whether to build a search index to be used later on by a JavaScript library
+build_search_index = false
+
+taxonomies = [{ name = "tags", paginate_by = 10 }]
+
+# Feeds are opted into per section; the root section sets generate_feeds.
+feed_filenames = ["atom.xml", "rss.xml"]
+
+[markdown]
+# Turn `:smile:` style shortcodes into emoji
+render_emoji = false
+
+# Collect footnotes at the end of the page and add back-references
+bottom_footnotes = true
+
+[markdown.highlighting]
+theme = "catppuccin-mocha"
+
+[extra]
+keywords = "anser, Serena An, MIT, math"
+# The main site, linked from the nav.
+main_site = "https://anserena.com/"
+main_site_name = "anserena.com"

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}
+    {{ section.title }} | {{ config.title }}
+{% endblock title %}
+{% block head %}
+    {% include "partials/katex.html" %}
+{% endblock head %}
+{% block content %}
+    {% if section.content %}<div class="prose">{{ section.content | safe }}</div>{% endif %}
+    {% if paginator is defined %}
+        {% set posts = paginator.pages %}
+    {% else %}
+        {% set posts = section.pages %}
+    {% endif %}
+    {% include "partials/post-list.html" %}
+    {% if paginator is defined %}
+        {% include "partials/pagination.html" %}
+    {% endif %}
+    <p class="post-browse">
+        <a href="{{ get_url(path='tags', trailing_slash=true) }}">Browse tags</a> •
+        <a href="{{ get_url(path='rss.xml') }}">RSS Feed</a> •
+        <a href="{{ get_url(path='atom.xml') }}">Atom Feed</a>
+    </p>
+{% endblock content %}

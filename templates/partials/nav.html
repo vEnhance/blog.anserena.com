@@ -1,0 +1,8 @@
+{% set here = current_path | default(value="") %}
+<nav class="site-nav">
+    <a href="{{ get_url(path='/', trailing_slash=true) }}"
+       {% if here == "/" %}aria-current="page"{% endif %}>Posts</a>
+    <a href="{{ get_url(path='tags', trailing_slash=true) }}"
+       {% if here is starting_with(pat="/tags") %}aria-current="page"{% endif %}>Tags</a>
+    <a href="{{ config.extra.main_site }}">{{ config.extra.main_site_name }}</a>
+</nav>

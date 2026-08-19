@@ -1,0 +1,5 @@
+{# Expects `post`: the page whose tags to render as chips. #}
+{% for tag in post.taxonomies.tags | default(value=[]) %}
+    <a class="post-tag"
+       href="{{ get_taxonomy_url(kind='tags', name=tag) | safe }}">{{ tag }}</a>
+{% endfor %}
