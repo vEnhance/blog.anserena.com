@@ -1,7 +1,7 @@
 # The URL the site will be built for
 base_url = "https://blog.anserena.com"
 
-title = "Serena An"
+title = "製品テスト"
 description = "Serena An's blog"
 author = "Serena An"
 
