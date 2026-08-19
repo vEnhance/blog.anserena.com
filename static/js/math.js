@@ -6,12 +6,15 @@ renderMathInElement(document.body, {
     { left: "$", right: "$", display: false },
   ],
   throwOnError: false,
+  // Post previews are truncated plain text, so any delimiters in them are
+  // fragments; rendering those would blow up the list item's height.
+  ignoredClasses: ["post-summary"],
 });
 
 // Backtick-wrapped math: a `$x$` or `$$x$$` code span, which Markdown passes
 // through verbatim.
 document.querySelectorAll("code").forEach(function (el) {
-  if (el.closest("pre")) {
+  if (el.closest("pre, .post-summary")) {
     return;
   }
   var tex = el.textContent.trim();

@@ -9,6 +9,13 @@
                     {% if post.draft %}<span class="post-draft">Draft</span>{% endif %}
                 </span>
                 <span class="post-terms">{%- include "partials/post-terms.html" -%}</span>
+                {# `summary` is the text before a <!-- more --> marker; without one, fall back to the opening of the body. #}
+                {% if post.summary %}
+                    <div class="post-summary prose">{{ post.summary | safe }}</div>
+                {% else %}
+                    {# `safe` after `striptags`: tags are already gone, and it keeps entities from being double-escaped. #}
+                    <p class="post-summary">{{ post.content | striptags | truncate(length=200) | safe }}</p>
+                {% endif %}
             </li>
         {% endfor %}
     </ul>
